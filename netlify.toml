@@ -1,0 +1,22 @@
+# Netlify Deployment Configuration
+# AI-Powered Smart Traffic Monitoring and Accident Prediction System
+
+[build]
+  publish = "src/frontend"
+  functions = "functions"
+  command = "npm run build"
+
+[build.environment]
+  NODE_VERSION = "20"
+
+# Redirect API calls to Netlify Serverless Function
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/api/:splat"
+  status = 200
+
+# Single Page Application Fallback
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200

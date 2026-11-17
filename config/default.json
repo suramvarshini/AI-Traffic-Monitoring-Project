@@ -1,0 +1,33 @@
+{
+  "system": {
+    "name": "AI Smart Traffic & Accident Prediction System",
+    "version": "1.0.0",
+    "port": 3000,
+    "simulationTickIntervalMs": 4000
+  },
+  "trafficThresholds": {
+    "smoothDensityMax": 35,
+    "moderateDensityMax": 65,
+    "heavyDensityMax": 85,
+    "severeDensityThreshold": 85
+  },
+  "accidentRiskFactors": {
+    "weatherWeight": 0.25,
+    "densityWeight": 0.35,
+    "speedVarianceWeight": 0.20,
+    "roadConditionWeight": 0.15,
+    "nightMultiplier": 1.25
+  },
+  "weatherTypes": [
+    { "id": "clear", "name": "Clear / Sunny", "riskFactor": 1.0 },
+    { "id": "rain", "name": "Heavy Rain", "riskFactor": 1.45 },
+    { "id": "fog", "name": "Dense Fog", "riskFactor": 1.60 },
+    { "id": "storm", "name": "Storm / Thunderstorm", "riskFactor": 1.85 }
+  ],
+  "roadTypes": [
+    { "id": "dry", "name": "Dry Surface", "slipFactor": 1.0 },
+    { "id": "wet", "name": "Wet Surface", "slipFactor": 1.35 },
+    { "id": "icy", "name": "Icy / Slippery", "slipFactor": 1.75 },
+    { "id": "construction", "name": "Under Construction", "slipFactor": 1.50 }
+  ]
+}

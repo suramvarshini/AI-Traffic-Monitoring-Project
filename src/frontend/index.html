@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Smart Traffic Monitoring & Accident Prediction System</title>
+  
+  <!-- Modern Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Leaflet CSS for Map -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="" />
+  
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Top Navigation Header -->
+    <header class="app-header">
+      <div class="brand">
+        <div class="brand-icon">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20M4.93 4.93l14.14 14.14M4.93 19.07l14.14-14.14"/></svg>
+        </div>
+        <div>
+          <h1>AI Traffic Monitor & Risk Predictor</h1>
+          <p class="subtitle">Intelligent Urban Mobility & Predictive Safety Decision System</p>
+        </div>
+      </div>
+
+      <!-- Live Simulation Bar -->
+      <div class="sim-controls-bar">
+        <div class="sim-status">
+          <span class="live-pulse"></span>
+          <span id="simStatusText">Live Simulation Active</span>
+        </div>
+        
+        <div class="sim-buttons">
+          <button id="btnWeatherSim" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 16.2A4.5 4.5 0 0 0 17.5 8h-1.8A7 7 0 1 0 2 14.9"/><path d="M16 14v6M8 14v6M12 16v6"/></svg>
+            Weather: <span id="currentWeatherLabel">CLEAR</span>
+          </button>
+          
+          <button id="btnTriggerAccident" class="btn btn-warning">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            Simulate Accident
+          </button>
+          
+          <button id="btnOpenPredictorModal" class="btn btn-accent">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            Predictor Tool
+          </button>
+
+          <button id="btnOpenMetricsModal" class="btn btn-outline">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+            ML Accuracy Metrics
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <!-- Top Alert Notification Ticker -->
+    <div id="alertBanner" class="alert-banner hidden">
+      <span class="alert-badge" id="alertBadge">HIGH ACCIDENT RISK</span>
+      <span id="alertMessage">High risk predicted on West City Bridge sector due to rain and heavy density.</span>
+      <button class="alert-close" onclick="document.getElementById('alertBanner').classList.add('hidden')">&times;</button>
+    </div>
+
+    <!-- Summary Metrics Dashboard Grid -->
+    <section class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-icon icon-cyan">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+        </div>
+        <div class="metric-info">
+          <span class="metric-label">Monitored Roads</span>
+          <span class="metric-value" id="valTotalRoads">8</span>
+          <span class="metric-sub" id="valIntersections">Global Location Routing Active</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon icon-emerald">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="metric-info">
+          <span class="metric-label">Avg Traffic Density</span>
+          <span class="metric-value" id="valAvgDensity">48%</span>
+          <span class="metric-sub" id="valAvgSpeed">Avg Speed: 42 km/h</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon icon-rose">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/></svg>
+        </div>
+        <div class="metric-info">
+          <span class="metric-label">Active Incidents</span>
+          <span class="metric-value" id="valActiveAccidents">2</span>
+          <span class="metric-sub text-rose" id="valHighRiskZones">2 High Risk Zones</span>
+        </div>
+      </div>
+
+      <div class="metric-card">
+        <div class="metric-icon icon-amber">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+        </div>
+        <div class="metric-info">
+          <span class="metric-label">System Health</span>
+          <span class="metric-value text-emerald" id="valSystemStatus">Optimal</span>
+          <span class="metric-sub" id="valMLModelAcc">AI Model Accuracy: 94.2%</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- Main Workspace Section: Map, Route Optimizer & Event Log -->
+    <main class="main-layout">
+      
+      <!-- Left Column: Map & Route Panel -->
+      <section class="panel map-panel">
+        <div class="panel-header">
+          <h2>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"/><line x1="8" y1="2" x2="8" y2="18"/><line x1="16" y1="6" x2="16" y2="22"/></svg>
+            Interactive Traffic & Accident Risk Map
+          </h2>
+          <div class="map-legend">
+            <span class="legend-item"><span class="dot dot-green"></span> Smooth</span>
+            <span class="legend-item"><span class="dot dot-yellow"></span> Moderate</span>
+            <span class="legend-item"><span class="dot dot-red"></span> Heavy</span>
+            <span class="legend-item"><span class="dot dot-darkred"></span> High Risk</span>
+          </div>
+        </div>
+        
+        <div id="trafficMap" class="map-container"></div>
+      </section>
+
+      <!-- Right Column: Route Optimization & Event Feed -->
+      <aside class="sidebar-layout">
+        
+        <!-- Global Real-World Route Optimizer Box -->
+        <div class="panel route-panel">
+          <div class="panel-header">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+              Global Smart Route Optimizer
+            </h3>
+          </div>
+
+          <form id="routeForm" class="route-form">
+            <!-- Searchable Origin Input -->
+            <div class="form-group search-group">
+              <label for="originInput">Starting Origin</label>
+              <div class="input-with-spinner">
+                <input type="text" id="originInput" class="form-control" placeholder="Search city, address, station, landmark..." autocomplete="off" required>
+                <div id="originSpinner" class="search-spinner hidden"></div>
+              </div>
+              <div id="originSuggestions" class="suggestions-dropdown hidden"></div>
+              <div id="originSelectedBadge" class="selected-badge hidden"></div>
+            </div>
+
+            <!-- Searchable Destination Input -->
+            <div class="form-group search-group">
+              <label for="destinationInput">Destination</label>
+              <div class="input-with-spinner">
+                <input type="text" id="destinationInput" class="form-control" placeholder="Search destination place, airport, landmark..." autocomplete="off" required>
+                <div id="destSpinner" class="search-spinner hidden"></div>
+              </div>
+              <div id="destSuggestions" class="suggestions-dropdown hidden"></div>
+              <div id="destSelectedBadge" class="selected-badge hidden"></div>
+            </div>
+
+            <!-- Quick Presets for Demo Testing -->
+            <div class="demo-presets-bar">
+              <span class="preset-label">Demo Presets:</span>
+              <button type="button" class="btn-chip" onclick="App.applyPreset('Bengaluru', 'Chennai')">BLR → MAA</button>
+              <button type="button" class="btn-chip" onclick="App.applyPreset('Hyderabad', 'Vijayawada')">HYD → VGA</button>
+              <button type="button" class="btn-chip" onclick="App.applyPreset('Delhi', 'Mumbai')">DEL → BOM</button>
+            </div>
+
+            <button type="submit" id="btnCalculateRoute" class="btn btn-accent btn-full">
+              Find AI-Optimized Driving Route
+            </button>
+          </form>
+
+          <div id="routeResults" class="route-results hidden">
+            <!-- Route suggestions rendered dynamically -->
+          </div>
+        </div>
+
+        <!-- Recent Events Log -->
+        <div class="panel events-panel">
+          <div class="panel-header">
+            <h3>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+              Recent Traffic Events & AI Logs
+            </h3>
+          </div>
+          <div id="eventsList" class="events-list">
+            <!-- Events rendered dynamically -->
+          </div>
+        </div>
+
+      </aside>
+    </main>
+
+    <!-- Analytics & Charts Grid -->
+    <section class="charts-section">
+      <div class="panel chart-card">
+        <h3>Hourly Traffic Volume & Speed Trend</h3>
+        <div class="chart-container">
+          <canvas id="chartTrafficTrend"></canvas>
+        </div>
+      </div>
+
+      <div class="panel chart-card">
+        <h3>Accident Risk Distribution</h3>
+        <div class="chart-container">
+          <canvas id="chartRiskDistribution"></canvas>
+        </div>
+      </div>
+
+      <div class="panel chart-card">
+        <h3>Road Segment Congestion Index</h3>
+        <div class="chart-container">
+          <canvas id="chartCongestionIndex"></canvas>
+        </div>
+      </div>
+
+      <div class="panel chart-card">
+        <h3>AI Feature Importance Weights</h3>
+        <div class="chart-container">
+          <canvas id="chartFeatureImportance"></canvas>
+        </div>
+      </div>
+    </section>
+
+    <!-- Live Telemetry & Predictions Table -->
+    <section class="panel table-panel">
+      <div class="panel-header">
+        <h2>Monitored Road Segments & AI Predictions</h2>
+        <span class="table-badge">Real-time Telemetry Feed</span>
+      </div>
+
+      <div class="table-responsive">
+        <table class="traffic-table">
+          <thead>
+            <tr>
+              <th>Road Segment</th>
+              <th>Speed</th>
+              <th>Density</th>
+              <th>Weather</th>
+              <th>Road Surface</th>
+              <th>Congestion Index</th>
+              <th>Accident Risk</th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="trafficTableBody">
+            <!-- Table rows populated dynamically -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+  </div>
+
+  <!-- MODAL 1: Manual Predictor & Data Entry -->
+  <div id="predictorModal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3>AI Traffic & Accident Risk Predictor Tool</h3>
+        <button class="modal-close" onclick="document.getElementById('predictorModal').classList.add('hidden')">&times;</button>
+      </div>
+
+      <form id="manualPredictForm" class="modal-form">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>Traffic Density (%)</label>
+            <input type="number" id="predDensity" class="form-control" min="0" max="100" value="75" required>
+          </div>
+
+          <div class="form-group">
+            <label>Current Speed (km/h)</label>
+            <input type="number" id="predSpeed" class="form-control" min="0" max="140" value="30" required>
+          </div>
+
+          <div class="form-group">
+            <label>Speed Limit (km/h)</label>
+            <input type="number" id="predSpeedLimit" class="form-control" min="20" max="120" value="60" required>
+          </div>
+
+          <div class="form-group">
+            <label>Weather Condition</label>
+            <select id="predWeather" class="form-control">
+              <option value="clear">Clear / Sunny</option>
+              <option value="rain" selected>Heavy Rain</option>
+              <option value="fog">Dense Fog</option>
+              <option value="storm">Thunderstorm</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Road Surface Condition</label>
+            <select id="predRoad" class="form-control">
+              <option value="dry">Dry</option>
+              <option value="wet" selected>Wet</option>
+              <option value="icy">Icy</option>
+              <option value="construction">Construction Zone</option>
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label>Time of Day</label>
+            <select id="predTime" class="form-control">
+              <option value="peak_morning">Peak Morning Rush</option>
+              <option value="daytime">Daytime Off-Peak</option>
+              <option value="peak_evening" selected>Peak Evening Rush</option>
+              <option value="night">Night</option>
+            </select>
+          </div>
+        </div>
+
+        <button type="submit" class="btn btn-accent btn-full" style="margin-top: 1rem;">
+          Run AI Risk Assessment
+        </button>
+      </form>
+
+      <div id="predResultBox" class="prediction-result-box hidden">
+        <!-- Prediction results rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- MODAL 2: ML Model Evaluation Metrics -->
+  <div id="metricsModal" class="modal hidden">
+    <div class="modal-content modal-lg">
+      <div class="modal-header">
+        <h3>AI Model Performance & Evaluation Metrics</h3>
+        <button class="modal-close" onclick="document.getElementById('metricsModal').classList.add('hidden')">&times;</button>
+      </div>
+
+      <div id="metricsContainer" class="metrics-container">
+        <!-- Metrics rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- External Libraries: Leaflet.js & Chart.js -->
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Application Scripts -->
+  <script src="js/apiService.js"></script>
+  <script src="js/mapManager.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/simulator.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

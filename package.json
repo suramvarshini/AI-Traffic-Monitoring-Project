@@ -1,0 +1,24 @@
+{
+  "name": "ai-traffic-monitoring-prediction",
+  "version": "1.0.0",
+  "description": "AI-Powered Smart Traffic Monitoring and Accident Prediction System",
+  "main": "src/backend/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node src/backend/server.js",
+    "build": "echo \"Building frontend static release in src/frontend...\"",
+    "test": "node tests/test_ml_and_routes.js"
+  },
+  "keywords": [
+    "traffic-monitoring",
+    "accident-prediction",
+    "route-optimization",
+    "machine-learning",
+    "smart-city",
+    "leaflet",
+    "dijkstra",
+    "netlify-functions"
+  ],
+  "author": "Antigravity AI Team",
+  "license": "MIT"
+}

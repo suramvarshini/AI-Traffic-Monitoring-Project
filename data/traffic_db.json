@@ -1,0 +1,499 @@
+{
+  "intersections": [
+    {
+      "id": "INT-1",
+      "name": "Central Square Junction",
+      "lat": 12.9716,
+      "lng": 77.5946,
+      "signalState": "Green",
+      "status": "Normal"
+    },
+    {
+      "id": "INT-2",
+      "name": "North Tech Highway Crossing",
+      "lat": 12.985,
+      "lng": 77.605,
+      "signalState": "Yellow",
+      "status": "Moderate"
+    },
+    {
+      "id": "INT-3",
+      "name": "East Metro Boulevard",
+      "lat": 12.965,
+      "lng": 77.62,
+      "signalState": "Red",
+      "status": "Heavy"
+    },
+    {
+      "id": "INT-4",
+      "name": "South Expressway Interchange",
+      "lat": 12.945,
+      "lng": 77.59,
+      "signalState": "Green",
+      "status": "Normal"
+    },
+    {
+      "id": "INT-5",
+      "name": "West City Bridge Junction",
+      "lat": 12.96,
+      "lng": 77.57,
+      "signalState": "Red",
+      "status": "Severe"
+    },
+    {
+      "id": "INT-6",
+      "name": "Financial District Hub",
+      "lat": 12.99,
+      "lng": 77.58,
+      "signalState": "Green",
+      "status": "Normal"
+    }
+  ],
+  "roads": [
+    {
+      "id": "ROAD-101",
+      "name": "Central Sq to North Tech Hwy",
+      "fromNode": "INT-1",
+      "toNode": "INT-2",
+      "distanceKm": 3.2,
+      "speedLimit": 60,
+      "currentSpeed": 32,
+      "density": 75,
+      "capacity": 2000,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 3,
+      "coordinates": [
+        [
+          12.9716,
+          77.5946
+        ],
+        [
+          12.978,
+          77.6
+        ],
+        [
+          12.985,
+          77.605
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-102",
+      "name": "Central Sq to East Metro Blvd",
+      "fromNode": "INT-1",
+      "toNode": "INT-3",
+      "distanceKm": 4.5,
+      "speedLimit": 60,
+      "currentSpeed": 27,
+      "density": 88,
+      "capacity": 2500,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 7,
+      "coordinates": [
+        [
+          12.9716,
+          77.5946
+        ],
+        [
+          12.968,
+          77.608
+        ],
+        [
+          12.965,
+          77.62
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-103",
+      "name": "Central Sq to South Expressway",
+      "fromNode": "INT-1",
+      "toNode": "INT-4",
+      "distanceKm": 3.8,
+      "speedLimit": 80,
+      "currentSpeed": 64,
+      "density": 37,
+      "capacity": 3000,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 1,
+      "coordinates": [
+        [
+          12.9716,
+          77.5946
+        ],
+        [
+          12.958,
+          77.592
+        ],
+        [
+          12.945,
+          77.59
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-104",
+      "name": "Central Sq to West City Bridge",
+      "fromNode": "INT-1",
+      "toNode": "INT-5",
+      "distanceKm": 3,
+      "speedLimit": 50,
+      "currentSpeed": 32,
+      "density": 60,
+      "capacity": 1800,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 10,
+      "coordinates": [
+        [
+          12.9716,
+          77.5946
+        ],
+        [
+          12.965,
+          77.582
+        ],
+        [
+          12.96,
+          77.57
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-105",
+      "name": "North Tech Hwy to Financial Hub",
+      "fromNode": "INT-2",
+      "toNode": "INT-6",
+      "distanceKm": 2.8,
+      "speedLimit": 60,
+      "currentSpeed": 50,
+      "density": 33,
+      "capacity": 2200,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 2,
+      "coordinates": [
+        [
+          12.985,
+          77.605
+        ],
+        [
+          12.988,
+          77.592
+        ],
+        [
+          12.99,
+          77.58
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-106",
+      "name": "West Bridge to Financial Hub",
+      "fromNode": "INT-5",
+      "toNode": "INT-6",
+      "distanceKm": 3.5,
+      "speedLimit": 50,
+      "currentSpeed": 41,
+      "density": 34,
+      "capacity": 2000,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 3,
+      "coordinates": [
+        [
+          12.96,
+          77.57
+        ],
+        [
+          12.975,
+          77.575
+        ],
+        [
+          12.99,
+          77.58
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-107",
+      "name": "East Metro Blvd to North Tech Hwy",
+      "fromNode": "INT-3",
+      "toNode": "INT-2",
+      "distanceKm": 4,
+      "speedLimit": 60,
+      "currentSpeed": 39,
+      "density": 64,
+      "capacity": 2000,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 4,
+      "coordinates": [
+        [
+          12.965,
+          77.62
+        ],
+        [
+          12.975,
+          77.615
+        ],
+        [
+          12.985,
+          77.605
+        ]
+      ]
+    },
+    {
+      "id": "ROAD-108",
+      "name": "South Expressway to East Metro",
+      "fromNode": "INT-4",
+      "toNode": "INT-3",
+      "distanceKm": 5.2,
+      "speedLimit": 70,
+      "currentSpeed": 65,
+      "density": 11,
+      "capacity": 2800,
+      "weather": "storm",
+      "roadCondition": "dry",
+      "historicalAccidents": 3,
+      "coordinates": [
+        [
+          12.945,
+          77.59
+        ],
+        [
+          12.955,
+          77.605
+        ],
+        [
+          12.965,
+          77.62
+        ]
+      ]
+    }
+  ],
+  "recentAccidents": [
+    {
+      "id": "ACC-1786552313555",
+      "timestamp": "2026-08-12T16:31:53.555Z",
+      "roadId": "ROAD-106",
+      "roadName": "West Bridge to Financial Hub",
+      "severity": "High",
+      "description": "Simulated collision event on West Bridge to Financial Hub",
+      "lat": 12.96,
+      "lng": 77.57
+    },
+    {
+      "id": "ACC-1786552312389",
+      "timestamp": "2026-08-12T16:31:52.389Z",
+      "roadId": "ROAD-104",
+      "roadName": "Central Sq to West City Bridge",
+      "severity": "High",
+      "description": "Simulated collision event on Central Sq to West City Bridge",
+      "lat": 12.9716,
+      "lng": 77.5946
+    },
+    {
+      "id": "ACC-501",
+      "roadId": "ROAD-104",
+      "roadName": "Central Sq to West City Bridge",
+      "severity": "High",
+      "weather": "fog",
+      "description": "Multi-vehicle collision reported near bridge approach due to dense fog.",
+      "timestamp": "2026-08-12T20:15:00.000Z",
+      "lat": 12.965,
+      "lng": 77.582
+    },
+    {
+      "id": "ACC-502",
+      "roadId": "ROAD-102",
+      "roadName": "Central Sq to East Metro Blvd",
+      "severity": "Medium",
+      "weather": "rain",
+      "description": "Vehicle hydroplaning causing traffic lane blockage.",
+      "timestamp": "2026-08-12T19:40:00.000Z",
+      "lat": 12.968,
+      "lng": 77.608
+    }
+  ],
+  "recentEvents": [
+    {
+      "id": "EVT-1786556878855-66",
+      "timestamp": "2026-08-12T17:47:58.855Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to South Expressway: Density 37%, Speed 64 km/h"
+    },
+    {
+      "id": "EVT-1786556878850-76",
+      "timestamp": "2026-08-12T17:47:58.850Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to North Tech Hwy: Density 75%, Speed 32 km/h"
+    },
+    {
+      "id": "EVT-1786556818872-47",
+      "timestamp": "2026-08-12T17:46:58.872Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to East Metro Blvd: Density 88%, Speed 27 km/h"
+    },
+    {
+      "id": "EVT-1786556818844-89",
+      "timestamp": "2026-08-12T17:46:58.844Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to South Expressway: Density 35%, Speed 64 km/h"
+    },
+    {
+      "id": "EVT-1786556758866-62",
+      "timestamp": "2026-08-12T17:45:58.866Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to North Tech Hwy: Density 75%, Speed 34 km/h"
+    },
+    {
+      "id": "EVT-1786556758840-39",
+      "timestamp": "2026-08-12T17:45:58.840Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to North Tech Hwy: Density 76%, Speed 35 km/h"
+    },
+    {
+      "id": "EVT-1786556698865-53",
+      "timestamp": "2026-08-12T17:44:58.865Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "South Expressway to East Metro: Density 11%, Speed 65 km/h"
+    },
+    {
+      "id": "EVT-1786556698842-81",
+      "timestamp": "2026-08-12T17:44:58.842Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "West Bridge to Financial Hub: Density 34%, Speed 41 km/h"
+    },
+    {
+      "id": "EVT-1786556638845-78",
+      "timestamp": "2026-08-12T17:43:58.845Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to North Tech Hwy: Density 80%, Speed 30 km/h"
+    },
+    {
+      "id": "EVT-1786556638822-67",
+      "timestamp": "2026-08-12T17:43:58.822Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "East Metro Blvd to North Tech Hwy: Density 64%, Speed 39 km/h"
+    },
+    {
+      "id": "EVT-1786556578862-21",
+      "timestamp": "2026-08-12T17:42:58.862Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "South Expressway to East Metro: Density 13%, Speed 62 km/h"
+    },
+    {
+      "id": "EVT-1786556578835-89",
+      "timestamp": "2026-08-12T17:42:58.835Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "North Tech Hwy to Financial Hub: Density 33%, Speed 50 km/h"
+    },
+    {
+      "id": "EVT-1786556529848-71",
+      "timestamp": "2026-08-12T17:42:09.848Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "North Tech Hwy to Financial Hub: Density 28%, Speed 48 km/h"
+    },
+    {
+      "id": "EVT-1786556529808-35",
+      "timestamp": "2026-08-12T17:42:09.808Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "East Metro Blvd to North Tech Hwy: Density 66%, Speed 36 km/h"
+    },
+    {
+      "id": "EVT-1786556525842-69",
+      "timestamp": "2026-08-12T17:42:05.842Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "West Bridge to Financial Hub: Density 30%, Speed 43 km/h"
+    },
+    {
+      "id": "EVT-1786556525811-75",
+      "timestamp": "2026-08-12T17:42:05.811Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "South Expressway to East Metro: Density 10%, Speed 64 km/h"
+    },
+    {
+      "id": "EVT-1786556521821-83",
+      "timestamp": "2026-08-12T17:42:01.821Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to West City Bridge: Density 60%, Speed 32 km/h"
+    },
+    {
+      "id": "EVT-1786556521814-2",
+      "timestamp": "2026-08-12T17:42:01.814Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "East Metro Blvd to North Tech Hwy: Density 65%, Speed 38 km/h"
+    },
+    {
+      "id": "EVT-1786556517835-23",
+      "timestamp": "2026-08-12T17:41:57.835Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to South Expressway: Density 30%, Speed 63 km/h"
+    },
+    {
+      "id": "EVT-1786556517806-43",
+      "timestamp": "2026-08-12T17:41:57.806Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "Central Sq to East Metro Blvd: Density 83%, Speed 30 km/h"
+    },
+    {
+      "id": "EVT-1786556513854-18",
+      "timestamp": "2026-08-12T17:41:53.854Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "East Metro Blvd to North Tech Hwy: Density 70%, Speed 35 km/h"
+    },
+    {
+      "id": "EVT-1786556513819-70",
+      "timestamp": "2026-08-12T17:41:53.819Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "East Metro Blvd to North Tech Hwy: Density 65%, Speed 37 km/h"
+    },
+    {
+      "id": "EVT-1786556509851-93",
+      "timestamp": "2026-08-12T17:41:49.851Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "West Bridge to Financial Hub: Density 33%, Speed 39 km/h"
+    },
+    {
+      "id": "EVT-1786556509814-47",
+      "timestamp": "2026-08-12T17:41:49.814Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "South Expressway to East Metro: Density 11%, Speed 67 km/h"
+    },
+    {
+      "id": "EVT-1786556505846-51",
+      "timestamp": "2026-08-12T17:41:45.846Z",
+      "type": "TELEMETRY_UPDATE",
+      "title": "Road Updated",
+      "message": "North Tech Hwy to Financial Hub: Density 26%, Speed 51 km/h"
+    }
+  ]
+}
